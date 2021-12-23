@@ -58,15 +58,15 @@ camera.lookAt(group.position)
 
 
 // Animation
-let lastTime = 0
+const clock = new THREE.Clock()
 
 const tick = (time) => {
-  const deltaTime = time - lastTime
-  lastTime = time
+  const deltaTime = clock.getElapsedTime()
 
   requestAnimationFrame(tick)
  
-  group.rotation.y += 0.0005 * deltaTime
+  group.rotation.y = Math.sin(deltaTime)
+  group.rotation.x = Math.cos(deltaTime)
 
   renderer.render(scene, camera)
 }
