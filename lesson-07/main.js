@@ -9,10 +9,7 @@ const sizes = {
   height: window.innerHeight,
 }
 
-// const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
-
-const aspectRatio = sizes.width / sizes.height
-const camera = new THREE.OrthographicCamera(-4 * aspectRatio, 4 * aspectRatio, 4, -4, 0.1, 100)
+const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
 camera.position.set(0, 0, 10)
 scene.add(camera)
 
@@ -23,6 +20,7 @@ renderer.setSize(sizes.width, sizes.height)
 
 // Objects
 const group = new THREE.Group()
+group.rotation.reorder('YXZ')
 scene.add(group)
 
 const cube1 = new THREE.Mesh(
@@ -53,24 +51,35 @@ group.add(cube3)
 // Transformation
 group.scale.y = 2
 
-// Axes Helper
-// const helper = new THREE.AxesHelper(0.5)
-// scene.add(helper)
 
-// Look at
-camera.lookAt(group.position)
+// Controls
+const cursor = {
+  x: 0,
+  y: 0,
+}
+ 
+window.addEventListener('mousemove', (e) => {
+  cursor.x = e.clientX / sizes.width - 0.5
+  cursor.y = e.clientY / sizes.height - 0.5
+})
 
 
 // Animation
 const clock = new THREE.Clock()
 
 const tick = (time) => {
-  const deltaTime = clock.getElapsedTime()
+  const elapsedTime = clock.getElapsedTime()
 
   requestAnimationFrame(tick)
  
-  group.rotation.y = Math.sin(deltaTime)
-  group.rotation.x = Math.cos(deltaTime)
+  // group.rotation.y = Math.sin(elapsedTime)
+  // group.rotation.x = Math.cos(elapsedTime)
+
+  camera.position.x = Math.sin((cursor.x - 0.5) * Math.PI * 2) * 10
+  camera.position.z = Math.cos((cursor.x - 0.5) * Math.PI * 2) * 10
+  camera.position.y = cursor.y * 10
+
+  camera.lookAt(group.position)
 
   renderer.render(scene, camera)
 }
