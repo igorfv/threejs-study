@@ -18,3 +18,4 @@ Move to the lesson dir and run
 - [Cameras](./lesson-07)
 - [Fullscreen and resizing](./lesson-08)
 - [Geometries](./lesson-09)
+- [Debug UI](./lesson-10)

@@ -1,7 +1,23 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import GUI from 'lil-gui'
+import gsap from 'gsap'
 
 import './style.css'
+
+/* GUIs
+- https://github.com/dataarts/dat.gui
+- https://lil-gui.georgealways.com/
+- https://github.com/freeman-lab/control-panel
+- https://github.com/automat/controlkit.js
+- https://github.com/lo-th/uil
+- https://cocopon.github.io/tweakpane/
+- https://github.com/colejd/guify
+- https://github.com/wearekuva/oui
+*/
+
+const gui = new GUI();
+
 
 const scene = new THREE.Scene()
 
@@ -21,26 +37,37 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 
 // Objects
-const geometry = new THREE.BufferGeometry()
-
-const count = 5000 * 3 * 3
-const positions = new Float32Array(count)
-
-for(let i = 0; i < count; i++) {
-  positions[i] = (Math.random() - 0.5) * 4
-}
-
-const positionsAttribute = new THREE.Float32BufferAttribute(positions, 3)
-
-geometry.setAttribute('position', positionsAttribute)
-
-
-
 const mesh = new THREE.Mesh(
-  geometry,
-  new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true }),
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshBasicMaterial({ color: 0xff0000 }),
 )
 scene.add(mesh)
+
+// Debug the cube
+const params = {
+  spin: () => {
+    gsap.to(mesh.rotation, {
+      y: mesh.rotation.y + Math.PI / 2,
+      duration: 0.5,
+    })
+  }
+}
+
+const cubeGui = gui.addFolder('Cube')
+
+cubeGui.add(mesh.position, 'x').min(-3).max(3).step(0.1)
+cubeGui.add(mesh.position, 'y').min(-3).max(3).step(0.1)
+cubeGui.add(mesh.position, 'z').min(-3).max(3).step(0.1)
+
+cubeGui.add(mesh, 'visible')
+cubeGui.add(mesh.material, 'wireframe')
+
+cubeGui.addColor(mesh.material, 'color')
+  .onChange((color) => {
+    mesh.material.color.set(color)
+  })
+
+  cubeGui.add(params, 'spin')
 
 
 // Resize
