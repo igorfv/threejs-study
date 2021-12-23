@@ -16,3 +16,4 @@ Move to the lesson dir and run
 - [Transform objects](./lesson-05)
 - [Animations](./lesson-06)
 - [Cameras](./lesson-07)
+- [Fullscreen and resizing](./lesson-08)
