@@ -15,3 +15,4 @@ Move to the lesson dir and run
 - [Webpack](./lesson-03) (ignoring as I'm using vite)
 - [Transform objects](./lesson-05)
 - [Animations](./lesson-06)
+- [Cameras](./lesson-07)
