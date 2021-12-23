@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 import './style.css'
 
@@ -53,16 +54,8 @@ group.scale.y = 2
 
 
 // Controls
-const cursor = {
-  x: 0,
-  y: 0,
-}
- 
-window.addEventListener('mousemove', (e) => {
-  cursor.x = e.clientX / sizes.width - 0.5
-  cursor.y = e.clientY / sizes.height - 0.5
-})
-
+const controls = new OrbitControls(camera, canvas)
+controls.enableDamping = true
 
 // Animation
 const clock = new THREE.Clock()
@@ -71,16 +64,8 @@ const tick = (time) => {
   const elapsedTime = clock.getElapsedTime()
 
   requestAnimationFrame(tick)
- 
-  // group.rotation.y = Math.sin(elapsedTime)
-  // group.rotation.x = Math.cos(elapsedTime)
 
-  camera.position.x = Math.sin((cursor.x - 0.5) * Math.PI * 2) * 10
-  camera.position.z = Math.cos((cursor.x - 0.5) * Math.PI * 2) * 10
-  camera.position.y = cursor.y * 10
-
-  camera.lookAt(group.position)
-
+  controls.update()
   renderer.render(scene, camera)
 }
 
