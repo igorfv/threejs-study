@@ -21,16 +21,20 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 
 // Objects
-const positionsArray = new Float32Array([
-  0, 0, 0,
-  0, 1, 0,
-  1, 0, 0,
-])
-
-const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3)
-
 const geometry = new THREE.BufferGeometry()
+
+const count = 500 * 3 * 3
+const positions = new Float32Array(count)
+
+for(let i = 0; i < count; i++) {
+  positions[i] = (Math.random() - 0.5) * 4
+}
+
+const positionsAttribute = new THREE.Float32BufferAttribute(positions, 3)
+
 geometry.setAttribute('position', positionsAttribute)
+
+
 
 const mesh = new THREE.Mesh(
   geometry,
