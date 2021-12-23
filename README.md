@@ -17,3 +17,4 @@ Move to the lesson dir and run
 - [Animations](./lesson-06)
 - [Cameras](./lesson-07)
 - [Fullscreen and resizing](./lesson-08)
+- [Geometries](./lesson-09)

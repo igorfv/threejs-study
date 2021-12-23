@@ -21,37 +21,22 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 
 // Objects
-const group = new THREE.Group()
-group.rotation.reorder('YXZ')
-scene.add(group)
+const positionsArray = new Float32Array([
+  0, 0, 0,
+  0, 1, 0,
+  1, 0, 0,
+])
 
-const cube1 = new THREE.Mesh(
-  new THREE.BoxGeometry(1, 1, 1),
-  new THREE.MeshBasicMaterial({ color: 0xff0000 }),
+const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3)
+
+const geometry = new THREE.BufferGeometry()
+geometry.setAttribute('position', positionsAttribute)
+
+const mesh = new THREE.Mesh(
+  geometry,
+  new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true }),
 )
-
-group.add(cube1)
-
-const cube2 = new THREE.Mesh(
-  new THREE.BoxGeometry(1, 1, 1),
-  new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
-)
-
-cube2.position.x = -2
-
-group.add(cube2)
-
-const cube3 = new THREE.Mesh(
-  new THREE.BoxGeometry(1, 1, 1),
-  new THREE.MeshBasicMaterial({ color: 0x0000ff }),
-)
-
-cube3.position.x = 2
-
-group.add(cube3)
-
-// Transformation
-group.scale.y = 2
+scene.add(mesh)
 
 
 // Resize
