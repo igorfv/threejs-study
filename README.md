@@ -22,3 +22,4 @@ Move to the lesson dir and run
 - [Textures](./lesson-11)
 - [Materials](./lesson-12)
 - [3D Text](./lesson-13)
+- [Go Live](./lesson-14) (ignoring, since it teachs how to deploy)
