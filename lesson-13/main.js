@@ -59,7 +59,6 @@ createABunchOf(new THREE.BoxGeometry(0.5, 0.5, 0.5), undefined, 35, 2.5)
 createABunchOf(new THREE.ConeGeometry(0.5, 1, 32), 70, 70, 1.5)
 createABunchOf(new THREE.SphereGeometry(0.5, 24, 24), 70, 50, 1.5)
 
-
 let mesh
 
 fontLoader.load('/helvetiker_bold.typeface.json', (font) => {
