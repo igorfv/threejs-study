@@ -29,55 +29,36 @@ const fontLoader = new FontLoader()
 
 const material = new THREE.MeshNormalMaterial()
 
-const donutGeometry = new THREE.TorusGeometry(0.2, 0.1, 20, 45)
-
-for (let i = 0; i < 100; i++) {
-  const donut = new THREE.Mesh(
-    donutGeometry,
-    material,
-  )
-
-  do {
-    donut.position.set(
-      (Math.random() - 0.5) * 30,
-      (Math.random() - 0.5) * 20,
-      (Math.random() - 0.5) * 30,
+const createABunchOf = (what, count = 100, spread = 30, scaleRate = 3) => {
+  for (let i = 0; i < count; i++) {
+    const donut = new THREE.Mesh(
+      what,
+      material,
     )
-  } while (donut.position.distanceTo(new THREE.Vector3(0, 0, 0)) < 5)
 
-  donut.rotation.x = Math.random() * Math.PI
-  donut.rotation.y = Math.random() * Math.PI
+    do {
+      donut.position.set(
+        (Math.random() - 0.5) * spread,
+        (Math.random() - 0.5) * spread * 0.75,
+        (Math.random() - 0.5) * spread,
+      )
+    } while (donut.position.distanceTo(new THREE.Vector3(0, 0, 0)) < 5)
 
-  const scale = (Math.random() - 0.2) * 3
-  donut.scale.set(scale, scale, scale)
+    donut.rotation.x = Math.random() * Math.PI
+    donut.rotation.y = Math.random() * Math.PI
 
-  scene.add(donut)
+    const scale = (Math.random() - 0.2) * scaleRate
+    donut.scale.set(scale, scale, scale)
+
+    scene.add(donut)
+  }
 }
 
-const boxGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5)
+createABunchOf(new THREE.TorusGeometry(0.2, 0.1, 20, 45), 70)
+createABunchOf(new THREE.BoxGeometry(0.5, 0.5, 0.5), undefined, 35, 2.5)
+createABunchOf(new THREE.ConeGeometry(0.5, 1, 32), 70, 70, 1.5)
+createABunchOf(new THREE.SphereGeometry(0.5, 24, 24), 70, 50, 1.5)
 
-for (let i = 0; i < 100; i++) {
-  const donut = new THREE.Mesh(
-    boxGeometry,
-    material,
-  )
-
-  do {
-    donut.position.set(
-      (Math.random() - 0.5) * 30,
-      (Math.random() - 0.5) * 20,
-      (Math.random() - 0.5) * 30,
-    )
-  } while (donut.position.distanceTo(new THREE.Vector3(0, 0, 0)) < 5)
-
-  donut.rotation.x = Math.random() * Math.PI
-  donut.rotation.y = Math.random() * Math.PI
-
-  const scale = (Math.random() - 0.2) * 3
-  donut.scale.set(scale, scale, scale)
-
-  scene.add(donut)
-}
 
 let mesh
 
@@ -143,7 +124,7 @@ const tick = (time) => {
   const elapsedTime = clock.getElapsedTime()
 
   if (mesh) {
-    mesh.rotation.y = elapsedTime * 0.5
+    mesh.rotation.y = Math.sin(elapsedTime) * 0.5
   }
 
   requestAnimationFrame(tick)
