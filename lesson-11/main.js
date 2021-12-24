@@ -46,7 +46,14 @@ const occlusion = textureLoader.load(occlusionSource)
 const metalness = textureLoader.load(metalnessSource)
 const roughness = textureLoader.load(roughnessSource)
 
+/* Quality textures
+- https://www.poliigon.com/
+- https://3dtextures.me/
+- https://www.arroway-textures.ch/
+*/
+
 // Filter
+// When using mipmaps images need to be divided by 2 (eg 1024x1024)
 color.generateMipmaps = false // Not necessary when using minFilter Nearest
 color.minFilter = THREE.NearestFilter
 color.magFilter = THREE.NearestFilter
