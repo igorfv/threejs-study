@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 import './style.css'
-import mapSource from './textures/door/color.jpg'
+import mapSource from './textures/minecraft.png'
 import alphaSource from './textures/door/alpha.jpg'
 import bumpSource from './textures/door/height.jpg'
 import normalSource from './textures/door/normal.jpg'
@@ -38,7 +38,7 @@ loadingManager.onLoad = () => console.log( 'Loading complete!')
 loadingManager.onError = ( url ) => console.log( 'Error', url)
 
 const textureLoader = new THREE.TextureLoader(loadingManager)
-const map = textureLoader.load(mapSource)
+const color = textureLoader.load(mapSource)
 const alpha = textureLoader.load(alphaSource)
 const bump = textureLoader.load(bumpSource)
 const normal = textureLoader.load(normalSource)
@@ -46,11 +46,15 @@ const occlusion = textureLoader.load(occlusionSource)
 const metalness = textureLoader.load(metalnessSource)
 const roughness = textureLoader.load(roughnessSource)
 
+// Filter
+color.generateMipmaps = false // Not necessary when using minFilter Nearest
+color.minFilter = THREE.NearestFilter
+color.magFilter = THREE.NearestFilter
 
 // Objects
 const mesh = new THREE.Mesh(
   new THREE.BoxGeometry(1, 1, 1),
-  new THREE.MeshBasicMaterial({ map }),
+  new THREE.MeshBasicMaterial({ map: color }),
 )
 scene.add(mesh)
 
