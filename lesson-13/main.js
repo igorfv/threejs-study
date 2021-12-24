@@ -39,9 +39,9 @@ for (let i = 0; i < 100; i++) {
 
   do {
     donut.position.set(
+      (Math.random() - 0.5) * 30,
       (Math.random() - 0.5) * 20,
-      (Math.random() - 0.5) * 20,
-      (Math.random() - 0.5) * 20,
+      (Math.random() - 0.5) * 30,
     )
   } while (donut.position.distanceTo(new THREE.Vector3(0, 0, 0)) < 5)
 
@@ -64,9 +64,9 @@ for (let i = 0; i < 100; i++) {
 
   do {
     donut.position.set(
+      (Math.random() - 0.5) * 30,
       (Math.random() - 0.5) * 20,
-      (Math.random() - 0.5) * 20,
-      (Math.random() - 0.5) * 20,
+      (Math.random() - 0.5) * 30,
     )
   } while (donut.position.distanceTo(new THREE.Vector3(0, 0, 0)) < 5)
 
