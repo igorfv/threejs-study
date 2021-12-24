@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100vh;
+  outline: none;
+}
+
+#webgl {
+  outline: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+}

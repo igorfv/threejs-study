@@ -20,3 +20,4 @@ Move to the lesson dir and run
 - [Geometries](./lesson-09)
 - [Debug UI](./lesson-10)
 - [Textures](./lesson-11)
+- [Materials](./lesson-12)
