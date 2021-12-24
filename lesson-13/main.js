@@ -24,9 +24,62 @@ const renderer = new THREE.WebGLRenderer({ canvas, antialias: true })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
-
-// LOADER
+// Geometries
 const fontLoader = new FontLoader()
+
+const material = new THREE.MeshNormalMaterial()
+
+const donutGeometry = new THREE.TorusGeometry(0.2, 0.1, 20, 45)
+
+for (let i = 0; i < 100; i++) {
+  const donut = new THREE.Mesh(
+    donutGeometry,
+    material,
+  )
+
+  do {
+    donut.position.set(
+      (Math.random() - 0.5) * 20,
+      (Math.random() - 0.5) * 20,
+      (Math.random() - 0.5) * 20,
+    )
+  } while (donut.position.distanceTo(new THREE.Vector3(0, 0, 0)) < 5)
+
+  donut.rotation.x = Math.random() * Math.PI
+  donut.rotation.y = Math.random() * Math.PI
+
+  const scale = (Math.random() - 0.2) * 3
+  donut.scale.set(scale, scale, scale)
+
+  scene.add(donut)
+}
+
+const boxGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5)
+
+for (let i = 0; i < 100; i++) {
+  const donut = new THREE.Mesh(
+    boxGeometry,
+    material,
+  )
+
+  do {
+    donut.position.set(
+      (Math.random() - 0.5) * 20,
+      (Math.random() - 0.5) * 20,
+      (Math.random() - 0.5) * 20,
+    )
+  } while (donut.position.distanceTo(new THREE.Vector3(0, 0, 0)) < 5)
+
+  donut.rotation.x = Math.random() * Math.PI
+  donut.rotation.y = Math.random() * Math.PI
+
+  const scale = (Math.random() - 0.2) * 3
+  donut.scale.set(scale, scale, scale)
+
+  scene.add(donut)
+}
+
+let mesh
 
 fontLoader.load('/helvetiker_bold.typeface.json', (font) => {
   const text = new TextGeometry("this is\nactually\ncool", {
@@ -41,9 +94,7 @@ fontLoader.load('/helvetiker_bold.typeface.json', (font) => {
     bevelOffset: 0,
   })
 
-  const material = new THREE.MeshNormalMaterial()
-
-  const mesh = new THREE.Mesh(text, material)
+  mesh = new THREE.Mesh(text, material)
   scene.add(mesh)
 
   // text.computeBoundingBox()
@@ -91,13 +142,9 @@ const clock = new THREE.Clock()
 const tick = (time) => {
   const elapsedTime = clock.getElapsedTime()
 
-  // sphere.rotation.y = 0.1 * elapsedTime
-  // plane.rotation.y = 0.1 * elapsedTime
-  // torus.rotation.y = 0.1 * elapsedTime
-
-  // sphere.rotation.x = 0.15 * elapsedTime
-  // plane.rotation.x = 0.15 * elapsedTime
-  // torus.rotation.x = 0.15 * elapsedTime
+  if (mesh) {
+    mesh.rotation.y = elapsedTime * 0.5
+  }
 
   requestAnimationFrame(tick)
 
