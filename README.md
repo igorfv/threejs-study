@@ -19,3 +19,4 @@ Move to the lesson dir and run
 - [Fullscreen and resizing](./lesson-08)
 - [Geometries](./lesson-09)
 - [Debug UI](./lesson-10)
+- [Textures](./lesson-11)
