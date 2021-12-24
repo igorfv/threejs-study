@@ -1,12 +1,12 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import GUI from 'lil-gui'
+// import GUI from 'lil-gui'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 
 import './style.css'
 
-const gui = new GUI()
+// const gui = new GUI()
 
 const scene = new THREE.Scene()
 
