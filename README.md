@@ -21,7 +21,10 @@ Move to the lesson dir and run
 - [Debug UI](./lesson-10)
 - [Textures](./lesson-11)
 - [Materials](./lesson-12)
-- [3D Text](./lesson-13)
+- [3D Text](./lesson-13) -> https://this-is-cool.vercel.app/
 - [Go Live](./lesson-14) (ignoring, since it teachs how to deploy)
 - [Lights](./lesson-15)
 - [Shadows](./lesson-16)
+
+## Random
+- [Globe Positioning](./globe-positioning) -> https://globe-positioning.vercel.app
