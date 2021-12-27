@@ -24,3 +24,4 @@ Move to the lesson dir and run
 - [3D Text](./lesson-13)
 - [Go Live](./lesson-14) (ignoring, since it teachs how to deploy)
 - [Lights](./lesson-15)
+- [Shadows](./lesson-16)
