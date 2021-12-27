@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
-import GUI from 'lil-gui'
+// import GUI from 'lil-gui'
 
 import './style.css'
 
@@ -19,7 +19,7 @@ function placeObjectOnPlanet(object, lat, lon, radius) {
 }
 
 
-const gui = new GUI()
+// const gui = new GUI()
 
 const scene = new THREE.Scene()
 
