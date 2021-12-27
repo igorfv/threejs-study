@@ -54,7 +54,8 @@ scene.add(globe)
 
 
 const pointHeight = 2
-const pointGeometry = new THREE.BoxGeometry(0.1, pointHeight, 0.1)
+const pointWeight = 0.05
+const pointGeometry = new THREE.BoxGeometry(pointWeight, pointHeight, pointWeight)
 const pointMaterial = new THREE.MeshBasicMaterial({ color: 0x55dd33 })
 
 const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff })
